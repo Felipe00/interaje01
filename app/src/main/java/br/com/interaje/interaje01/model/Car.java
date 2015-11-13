@@ -1,4 +1,4 @@
-package br.com.interaje.interaje01.activities.model;
+package br.com.interaje.interaje01.model;
 
 /**
  * Created by lacroiix on 11/11/15.

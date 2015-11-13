@@ -21,9 +21,10 @@
         android:hint="Nome do carro"
         android:layout_below="@+id/txt1" />
 
+    <!-- Comentário -->
+
     <Button
         android:text="Cadastrar"
-        android:onClick="registerCar"
         android:id="@+id/btn_addCar"
         android:layout_below="@+id/car_name"
         android:layout_width="wrap_content"
