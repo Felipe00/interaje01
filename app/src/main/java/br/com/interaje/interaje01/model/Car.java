@@ -4,10 +4,20 @@ package br.com.interaje.interaje01.model;
  * Created by lacroiix on 11/11/15.
  */
 public class Car {
+
+    private Long id;
     private String name;
     private String year;
     private Double price;
     private byte[] photo;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -40,5 +50,6 @@ public class Car {
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
+
 
 }

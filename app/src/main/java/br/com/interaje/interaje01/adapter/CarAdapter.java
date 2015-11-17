@@ -1,10 +1,13 @@
 package br.com.interaje.interaje01.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -37,7 +40,7 @@ public class CarAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 1l;
+        return list.get(position).getId();
     }
 
     @Override
@@ -45,7 +48,18 @@ public class CarAdapter extends BaseAdapter {
         View rowView = mLayout.inflate(R.layout.item_list_car, parent, false);
 
         TextView carName = (TextView) rowView.findViewById(R.id.tv_carName);
+        TextView carYear = (TextView) rowView.findViewById(R.id.tv_carYear);
+        TextView carPrice = (TextView) rowView.findViewById(R.id.tv_carPrice);
+        ImageView carPhoto = (ImageView) rowView.findViewById(R.id.imv_photo);
+
         carName.setText(list.get(position).getName());
+        carYear.setText(list.get(position).getYear());
+        carPrice.setText(String.valueOf(list.get(position).getPrice()));
+
+        /*byte[] photo = list.get(position).getPhoto();
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
+        carPhoto.setImageBitmap(bitmap);*/
         return rowView;
     }
 }
