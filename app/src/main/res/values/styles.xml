@@ -14,7 +14,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">3dp</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:background">#d73bb33e</item>
+        <item name="android:background">@drawable/rounded_button</item>
         <item name="android:shadowColor">#d73bb33e</item>
     </style>
 

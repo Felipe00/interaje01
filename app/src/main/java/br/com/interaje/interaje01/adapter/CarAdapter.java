@@ -56,10 +56,10 @@ public class CarAdapter extends BaseAdapter {
         carYear.setText(list.get(position).getYear());
         carPrice.setText(String.valueOf(list.get(position).getPrice()));
 
-        /*byte[] photo = list.get(position).getPhoto();
+        byte[] photo = list.get(position).getPhoto();
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
-        carPhoto.setImageBitmap(bitmap);*/
+        carPhoto.setImageBitmap(bitmap);
         return rowView;
     }
 }

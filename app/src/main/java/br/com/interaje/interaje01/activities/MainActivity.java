@@ -13,7 +13,11 @@ import android.widget.ImageButton;
 import java.io.ByteArrayOutputStream;
 
 import br.com.interaje.interaje01.R;
+import br.com.interaje.interaje01.database.CarDatabaseHelper;
+import br.com.interaje.interaje01.database.Database;
 import br.com.interaje.interaje01.model.Car;
+import br.com.interaje.interaje01.repositories.CarDAO;
+import br.com.interaje.interaje01.repositories.impl.CarDAOImpl;
 import br.com.interaje.interaje01.util.ListCarDB;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -22,6 +26,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageButton takePhoto;
     private Button btnAdd;
     private byte[] carPhoto;
+    private CarDAO dao;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 car.setPrice(Double.parseDouble(carPrice.getText().toString()));
                 car.setPhoto(carPhoto);
 
-                ListCarDB.cars.add(car);
+                insertCar(car);
+                //ListCarDB.cars.add(car);
                 startActivity(new Intent(this, ListCarActivity.class));
                 break;
 
@@ -64,14 +71,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    private void insertCar(Car car) {
+        database = new Database(new CarDatabaseHelper(this));
+        dao = new CarDAOImpl();
+
+        dao.insert(car, database);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //TODO Colocar validaçao de Ok na tela ou um Negativo se ele nao tirou a foto
+        //TODO Colocar validaçao de Ok na tela ou um Negativo se
+        // ele nao tirou a foto
+
         Bitmap photo = (Bitmap) data.getExtras().get("data");
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
         photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
         carPhoto = stream.toByteArray();
     }
 }
