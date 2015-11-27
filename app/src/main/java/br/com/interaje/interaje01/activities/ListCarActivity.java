@@ -1,10 +1,12 @@
 package br.com.interaje.interaje01.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.interaje.interaje01.R;
@@ -29,6 +31,14 @@ public class ListCarActivity extends Activity {
         listViewCar = (ListView) findViewById(R.id.list);
         CarAdapter adapter = new CarAdapter(getCars(), this);
         listViewCar.setAdapter(adapter);
+        listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*Intent intent = new Intent(ListCarActivity.this, DetailActivity.class);
+                intent.putExtra("","");*/
+                startActivity(new Intent(ListCarActivity.this, DetailActivity.class));
+            }
+        });
     }
 
     /**
@@ -41,6 +51,10 @@ public class ListCarActivity extends Activity {
         dao = new CarDAOImpl();
 
         return dao.findAll(this, database);
+    }
+
+    public void goAddView(View v) {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 }

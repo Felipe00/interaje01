@@ -11,4 +11,6 @@
     <string name="carYear">Ano do carro</string>
     <string name="carPrice">Preço do carro</string>
     <string name="btn_add">Cadastrar</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>

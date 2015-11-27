@@ -6,20 +6,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.com.interaje.interaje01.activities.ListCarActivity">
+    tools:context="br.com.interaje.interaje01.activities.LoginActivity">
 
-    <Button
-        android:text="Cadastrar"
-        android:id="@+id/btn_addViewCar"
-        android:onClick="goAddView"
+    <EditText
+        android:hint="Email"
+        android:id="@+id/et_login_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ListView
-        android:layout_below="@+id/btn_addViewCar"
-        android:id="@+id/list"
+    <EditText
+        android:hint="Senha"
+        android:id="@+id/et_login_password"
+        android:layout_below="@+id/et_login_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="Entrar"
+        android:onClick="login"
+        android:layout_below="@+id/et_login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <SearchView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></SearchView>
 
 </RelativeLayout>

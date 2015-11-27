@@ -11,11 +11,11 @@
 
     <TextView
         android:id="@+id/txt1"
-        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Cadastro de carros" />
+        android:text="Cadastro de carros"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/car_name"
@@ -26,36 +26,51 @@
 
     <EditText
         android:id="@+id/car_year"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/car_name"
-        android:hint="@string/carYear" />
+        android:hint="@string/carYear"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/car_price"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/car_year"
-        android:hint="@string/carPrice" />
+        android:hint="@string/carPrice"
+        android:inputType="number" />
 
-    <ImageButton
-        android:id="@+id/btn_camera"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/ll_01"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/car_price"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_camera" />
+        android:layout_below="@+id/car_price">
+
+        <ImageButton
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_camera" />
+
+        <ImageView
+            android:id="@+id/iv_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_camera" />
+    </RelativeLayout>
+
 
     <Button
-        style="@style/CustomButtonStyle"
-        android:layout_marginTop="20dp"
         android:id="@+id/btn_addCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_camera"
+        android:layout_below="@+id/ll_01"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
         android:text="@string/btn_add" />
 
 </RelativeLayout>

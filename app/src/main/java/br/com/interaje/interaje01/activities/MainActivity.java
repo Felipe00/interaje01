@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 
@@ -82,15 +83,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //TODO Colocar validaçao de Ok na tela ou um Negativo se
-        // ele nao tirou a foto
+        ImageView iv = (ImageView) findViewById(R.id.iv_confirm);
 
-        Bitmap photo = (Bitmap) data.getExtras().get("data");
+        if (resultCode == RESULT_OK){
+            iv.setImageResource(R.drawable.ic_ok);
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
 
-        photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        carPhoto = stream.toByteArray();
+            photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+            carPhoto = stream.toByteArray();
+        } else {
+            iv.setImageResource(R.drawable.ic_bad_ok);
+        }
+
     }
 }
