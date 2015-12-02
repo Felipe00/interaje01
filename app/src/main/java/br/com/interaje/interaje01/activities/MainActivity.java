@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -26,9 +28,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private EditText carName, carYear, carPrice;
     private ImageButton takePhoto;
     private Button btnAdd;
-    private byte[] carPhoto;
     private CarDAO dao;
     private Database database;
+    private Car car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,26 +50,40 @@ public class MainActivity extends Activity implements View.OnClickListener {
         carPrice = (EditText) findViewById(R.id.car_price);
     }
 
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            carName.setHint("Carro Maluxo..");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            //startActivity(new Intent(MainActivity.this, ListCarActivity.class));
+        }
+    };
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_addCar:
-                Car car = new Car();
+                car = new Car();
                 car.setName(carName.getText().toString());
                 car.setYear(carYear.getText().toString());
                 //Atenção! O que vem da View é uma String, por isso temos que
                 // fazer a conversão para Double!
                 car.setPrice(Double.parseDouble(carPrice.getText().toString()));
-                car.setPhoto(carPhoto);
+                //car.setPhoto(carPhoto);
 
-                insertCar(car);
-                //ListCarDB.cars.add(car);
-                startActivity(new Intent(this, ListCarActivity.class));
+                Handler handler = new Handler();
+                //handler.post(runnable);
+
+                //insertCar(car);
                 break;
 
             case R.id.btn_camera:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 1);
+                startActivity(new Intent(this, PhotoActivity.class));
                 break;
         }
     }
@@ -79,25 +95,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
         dao.insert(car, database);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        ImageView iv = (ImageView) findViewById(R.id.iv_confirm);
-
-        if (resultCode == RESULT_OK){
-            iv.setImageResource(R.drawable.ic_ok);
-
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-            photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
-
-            carPhoto = stream.toByteArray();
-        } else {
-            iv.setImageResource(R.drawable.ic_bad_ok);
-        }
-
-    }
 }

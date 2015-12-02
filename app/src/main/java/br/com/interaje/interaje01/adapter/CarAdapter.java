@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.interaje.interaje01.R;
 import br.com.interaje.interaje01.model.Car;
+import br.com.interaje.interaje01.util.ImageHelper;
 
 /**
  * Created by lacroiix on 13/11/15.
@@ -59,7 +60,8 @@ public class CarAdapter extends BaseAdapter {
         byte[] photo = list.get(position).getPhoto();
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
-        carPhoto.setImageBitmap(bitmap);
+        carPhoto.setImageBitmap(ImageHelper.getRoundedCornerBitmap(bitmap));
+
         return rowView;
     }
 }

@@ -13,19 +13,19 @@ import br.com.interaje.interaje01.util.PrefsManager;
 
 public class DetailActivity extends Activity {
 
-    private PrefsManager prefs;
+    private PrefsManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        prefs = new PrefsManager(this);
-        prefs.addSessionParam("testParam", "Meu Valor");
+        session = new PrefsManager(this);
+        session.addSessionParam("testParam", "Meu Valor");
     }
 
     public void editCar(View view) {
-        Toast.makeText(this, prefs.getSessionParam("testParam"), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, session.getSessionParam("personalMessage"), Toast.LENGTH_LONG).show();
     }
 
 }

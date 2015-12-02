@@ -3,6 +3,8 @@ package br.com.interaje.interaje01.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import br.com.interaje.interaje01.model.Car;
+
 /**
  * Created by lacroiix on 18/11/15.
  */
@@ -26,7 +28,6 @@ public class PrefsManager {
         pref = context.getSharedPreferences(PREF_NAME, context.MODE_PRIVATE);
         editor = pref.edit();
     }
-
 
     /**
      * Add BOOLEAN params to session.

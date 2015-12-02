@@ -54,6 +54,7 @@ public class ListCarActivity extends Activity {
     }
 
     public void goAddView(View v) {
+        //PhotoActivity.coolDialog(this);
         startActivity(new Intent(this, MainActivity.class));
     }
 

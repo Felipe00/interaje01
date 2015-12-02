@@ -1,45 +1,38 @@
 package br.com.interaje.interaje01.activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import br.com.interaje.interaje01.R;
+import br.com.interaje.interaje01.util.PrefsManager;
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.NameValuePair;
-import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
-import cz.msebera.android.httpclient.entity.StringEntity;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 public class LoginActivity extends AppCompatActivity {
+
+    Button btn_send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        btn_send = (Button) findViewById(R.id.btn_send);
     }
 
     @Override
@@ -68,10 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog d = dialogLogin();
         d.show();
 
-        servidorEduardo(d);
+        //servidorEduardo(d);
         //chamaThread(d);
-        //chamaTask(d);
+        chamaTask(d);
+
     }
+
 
     private void servidorEduardo(final ProgressDialog d) {
         RequestParams params = new RequestParams();
@@ -102,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
+                    // Faça a chamada aqui!
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -112,7 +108,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
+                PrefsManager session = new PrefsManager(LoginActivity.this);
+                session.addSessionParam("username","Felipe Costa");
+                session.addSessionParam("email","email@email.com");
+                session.addSessionParam("personalMessage","Tenha um ótimo dia!");
                 d.dismiss();
+                startActivity(new Intent(LoginActivity.this, ListCarActivity.class));
             }
         };
         task.execute();
