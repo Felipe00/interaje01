@@ -45,6 +45,13 @@
         android:textSize="16sp" />
 
     <Button
+        android:text="Deletar Carro"
+        android:onClick="deleteCar"
+        android:layout_below="@+id/detail_carPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
         android:onClick="editCar"
         android:id="@+id/detail_editBtn"
         android:layout_width="match_parent"

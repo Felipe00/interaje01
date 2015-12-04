@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.com.interaje.interaje01.R;
+import br.com.interaje.interaje01.util.DialogPopUp;
 import br.com.interaje.interaje01.util.PrefsManager;
 
 public class DetailActivity extends Activity {
@@ -26,6 +27,11 @@ public class DetailActivity extends Activity {
 
     public void editCar(View view) {
         Toast.makeText(this, session.getSessionParam("personalMessage"), Toast.LENGTH_LONG).show();
+    }
+
+    public void deleteCar(View view) {
+        DialogPopUp dialog = new DialogPopUp(this);
+        dialog.createDialog("Atenção!", "Deseja apagar este carro?");
     }
 
 }

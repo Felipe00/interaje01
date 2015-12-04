@@ -25,7 +25,7 @@ public class PhotoAdapter extends BaseAdapter {
         layoutInflater = layoutInflater.from(c);
     }
 
-    public void updateReceiptsList(List<Bitmap> newlist) {
+    public void updateList(List<Bitmap> newlist) {
         photos = newlist;
         this.notifyDataSetChanged();
     }

@@ -13,4 +13,7 @@
     <string name="btn_add">Cadastrar</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+
+    <string name="title_activity_login1">LoginActivity</string>
+    <string name="title_activity_login2">LoginActivity</string>
 </resources>

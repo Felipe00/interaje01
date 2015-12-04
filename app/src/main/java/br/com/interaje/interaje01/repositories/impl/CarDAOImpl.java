@@ -71,15 +71,13 @@ public class CarDAOImpl implements CarDAO {
 
         if (cursor != null && !cursor.isClosed()) {
             listEntity = new ArrayList<Car>();
+
+            for (int  i = 0; i < cursor.getCount(); i++) {
+
+            }
             while (cursor.moveToNext()) {
                 entity = new Car();
-                entity.setId(
-                        cursor.getLong(
-                                cursor.getColumnIndex(
-                                        CarDatabaseHelper.COLUMN_ID
-                                )
-                        )
-                );
+                entity.setId(cursor.getLong(cursor.getColumnIndex(CarDatabaseHelper.COLUMN_ID)));
                 entity.setName(cursor.getString(cursor.getColumnIndex(CarDatabaseHelper.COLUMN_NAME)));
                 entity.setYear(cursor.getString(cursor.getColumnIndex(CarDatabaseHelper.COLUMN_YEAR)));
                 entity.setPrice(cursor.getDouble(cursor.getColumnIndex(CarDatabaseHelper.COLUMN_PRICE)));

@@ -51,26 +51,9 @@ public class PhotoActivity extends AppCompatActivity {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
             listPhotos.add(photo);
-            adapter.updateReceiptsList(listPhotos);
+            adapter.updateList(listPhotos);
         }
 
     }
 
-    public static void coolDialog(final Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Pesquisa!")
-                .setMessage("Abacaxis vao dominar o mundo?")
-                .setPositiveButton("Sim?", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "Corram para as colinas!", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setNegativeButton("Nao mesmo!", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, ">:) Vamos detonar uns abacaxis!", Toast.LENGTH_LONG).show();
-                    }
-                }).show();
-    }
 }
